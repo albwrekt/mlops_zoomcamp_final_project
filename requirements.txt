@@ -1,0 +1,13 @@
+pandas
+numpy
+prefect
+awscli-local
+localstack
+mlflow
+dtale
+pre-commit
+black
+flake8
+mypy
+isort
+pytest
