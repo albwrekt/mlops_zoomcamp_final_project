@@ -16,6 +16,10 @@ data_directory_format = "data/{0}/{1}"
 data_pipeline_file_format = "{0}_data.parquet"
 # Experiment file format
 experiment_data_format = "data/experiments/{0}/{1}.parquet"
+# tracking uri for mlflow
+mlflow_tracking_uri = "http://127.0.0.1:5000"
+# model name
+ride_count_non_holiday_model_name = "Ride Count Non-Holiday"
 
 
 # Data Quality level enumeration for strings

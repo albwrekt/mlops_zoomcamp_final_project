@@ -47,7 +47,7 @@ from xgboost import XGBRegressor
 from utilities import *
 
 # Set up the tracking uri - should just be default
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+mlflow.set_tracking_uri(mlflow_tracking_uri)
 
 
 @task(name="Featurization for Ride Count on Non-Holidays")
@@ -260,7 +260,7 @@ def ml_experiment_linear_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(lr, artifact_path="default_linear_regression/lr.pkl")
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -330,7 +330,7 @@ def ml_experiment_logistic_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(lr, artifact_path="default_logistic_regression/lr.pkl")
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -401,7 +401,7 @@ def ml_experiment_kmeans_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(lr, artifact_path="default_kmeans_regression/lr.pkl")
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -471,9 +471,7 @@ def ml_experiment_decision_tree_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="default_decision_tree_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -545,9 +543,7 @@ def ml_experiment_random_forest_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="default_random_forest_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -619,7 +615,7 @@ def ml_experiment_xgboost_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.xgboost.log_model(lr, artifact_path="default_xgboost_regression/lr.pkl")
+        mlflow.xgboost.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -696,9 +692,7 @@ def ml_experiment_bagged_linear_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="default_bagged_linear_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -769,9 +763,7 @@ def ml_experiment_bagged_logistic_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="bagged_default_logistic_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -843,9 +835,7 @@ def ml_experiment_bagged_kmeans_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="bagged_default_kmeans_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -916,9 +906,7 @@ def ml_experiment_bagged_decision_tree_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="bagged_default_decision_tree_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -995,9 +983,7 @@ def ml_experiment_bagged_random_forest_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="bagged_default_random_forest_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1074,9 +1060,7 @@ def ml_experiment_bagged_xgboost_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="bagged_default_xgboost_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1152,9 +1136,7 @@ def ml_experiment_boosted_linear_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="default_boosted_linear_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1225,9 +1207,7 @@ def ml_experiment_boosted_logistic_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="boosted_default_logistic_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1300,9 +1280,7 @@ def ml_experiment_boosted_kmeans_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="boosted_default_kmeans_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1373,9 +1351,7 @@ def ml_experiment_boosted_decision_tree_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="boosted_default_decision_tree_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1452,9 +1428,7 @@ def ml_experiment_boosted_random_forest_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="boosted_default_random_forest_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)
@@ -1531,9 +1505,7 @@ def ml_experiment_boosted_xgboost_regressor_ride_count_non_holidays(
         train_rmse = math.sqrt(mean_squared_error(y_train, train_preds))
         test_rmse = math.sqrt(mean_squared_error(y_test, test_preds))
         # Log the model for sklearn
-        mlflow.sklearn.log_model(
-            lr, artifact_path="boosted_default_xgboost_regression/lr.pkl"
-        )
+        mlflow.sklearn.log_model(lr, artifact_path="model")
         # Log the metrics
         mlflow.log_metric("Training Mean Absolute Error", train_mae)
         mlflow.log_metric("Testing Mean Absolute Error", test_mae)

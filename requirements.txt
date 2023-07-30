@@ -1,6 +1,7 @@
 pandas
 numpy
 prefect
+awscli
 awscli-local
 localstack
 mlflow
@@ -16,3 +17,4 @@ glob2
 sklearn
 xgboost
 tensorflow
+evidently

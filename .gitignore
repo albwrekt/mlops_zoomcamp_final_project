@@ -1,3 +1,5 @@
 *.db
 *.parquet
 *.csv
+mlruns/*
+*__pycache__*
