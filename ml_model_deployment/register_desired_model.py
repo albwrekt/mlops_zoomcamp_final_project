@@ -93,6 +93,31 @@ def register_best_model(experiment_id: int = 1):
         # If it doesn't pass, re-promote the previous to staging and send the other to None
 
 
+# This function is dedicated to reverting to the previous model version
+def revert_previous_model_version():
+    """
+    This function focuses on reverting to the previous model in the registry
+    """
+    # mlflow client
+    client = MlflowClient(mlflow_tracking_uri)
+    # Search for the latest version
+    latest_version = int(
+        client.get_latest_versions(
+            name=ride_count_non_holiday_model_name, stages=["Production"]
+        )[0].version
+    )
+    # Subtract to get next lowest version
+    next_version = latest_version - 1
+    # Now archive the current version
+    client.transition_model_version_stage(
+        name=ride_count_non_holiday_model_name, version=latest_version, stage="Archived"
+    )
+    # Now promote the old version back to Production.
+    client.transition_model_version_stage(
+        name=ride_count_non_holiday_model_name, version=next_version, stage="Production"
+    )
+
+
 # main
 if __name__ == "__main__":
-    register_best_model(experiment_id=1)
+    revert_previous_model_version()

@@ -23,14 +23,12 @@ import numpy as np
 
 # Data manipulation
 import pandas as pd
-from mlflow import MlflowClient  # Client to query experimentation.
 from sklearn.cluster import KMeans
 
 # Training utilities for machine learning
 from sklearn.ensemble import (
     AdaBoostRegressor,
     BaggingRegressor,
-    GradientBoostingRegressor,
     RandomForestRegressor,
 )
 
