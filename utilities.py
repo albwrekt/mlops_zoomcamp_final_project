@@ -47,6 +47,39 @@ def generate_single_feature():
     return feature_df.iloc[random_sample : random_sample + 1]
 
 
+# Generate single point of data from the stored featurized data.
+def generate_reference_dataset():
+    """
+    Grab a single feature that can be used to test out the model prediction in either case.
+    """
+    # Load in the featurized data for the test.
+    location = experiment_data_format.format(experiment_name, "ml_input")
+    # Bring data to dataframe
+    feature_df = pd.read_parquet(location)
+    # Parse out the desired label
+    feature_df = feature_df[[col for col in feature_df.columns if col != "ride_count"]]
+    # Randomly sample the data within
+    random_sample = randint(0, feature_df.shape[0] // 2)
+    random_end_sample = randint(feature_df.shape[0] // 2 + 1, feature_df.shape[0] - 1)
+    # Save the dataset
+    feature_df.iloc[random_sample:random_end_sample].to_parquet(
+        data_directory_format.format("drift_reference", "reference.parquet")
+    )
+
+
+# Load and read the reference dataset
+def load_reference_dataset():
+    """
+    Bring in reference dataset to compare in drift report.
+    """
+    # Read in source
+    ref_df = pd.read_parquet(
+        data_directory_format.format("drift_reference", "reference.parquet")
+    )
+    # Return
+    return ref_df
+
+
 # Data Quality level enumeration for strings
 class DataQualityEnum(StrEnum):
     RAW = "raw"

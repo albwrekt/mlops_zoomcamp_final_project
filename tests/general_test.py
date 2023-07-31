@@ -93,7 +93,3 @@ if deployed:
         )
         # Wait for the return.
         print(result.json())
-
-
-if __name__ == "__main__":
-    test_latest_model_prediction()

@@ -12,7 +12,11 @@ import sys
 from prefect import flow, task
 
 sys.path.insert(0, "../../")
+sys.path.insert(0, "./ml_model_deployment")
 import math
+
+# Import of model montiroing
+from ml_model_monitoring import *
 
 # Graphing
 import matplotlib.pyplot as plt
@@ -170,6 +174,8 @@ def ml_experiment_ride_count_non_holiday(features_df: pd.DataFrame):
     experiment_df.to_parquet(
         experiment_data_format.format(ExperimentEnum.RIDE_COUNT_NON_HOLIDAY, "ml_input")
     )
+    # Run the drift monitoring
+    parse_input_dataset(experiment_df)
     # Test train and split on the base features. Stratify on the day of the week.
     x_train, x_test, y_train, y_test = train_test_split(
         experiment_df[[col for col in experiment_df.columns if col != label_column]],

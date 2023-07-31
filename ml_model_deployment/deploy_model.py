@@ -6,7 +6,6 @@ from fastapi import FastAPI, Request
 
 # Data manipulation
 import pandas as pd
-import numpy as np
 
 # Add the system path
 import sys
