@@ -21,8 +21,9 @@ Model Monitoring: Evidently Test Suite for Data Drift on Model Input. Report out
 CI/CD Pipeline: Was not used for this project.<br>
 
 ## Prefect Flows to Monitor at localhost:4200
- Data Pipeline Flow: Performs the standard data engineering for medallion architecture to get data in.<br>
+Data Pipeline Flow: Performs the standard data engineering for medallion architecture to get data in.<br>
 ML Experiment Flow: Performs the ML Experiment and contributes any new best model to the MLFlow Registry. <br>
+This project provides full workflow pipeline from raw data entry files to output best model based on training data. Serving utilities are then run separately.<br>
 
 ## MLFlow Experiments to Register the Model
 Ride Count Non-Holiday
