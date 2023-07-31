@@ -93,7 +93,8 @@ def register_best_model(experiment_id: int = 1):
         # If it doesn't pass, re-promote the previous to staging and send the other to None
 
 
-# This function is dedicated to reverting to the previous model version
+# This function is dedicated to reverting to the previous model version if errors arise
+@task(name="Reverting Model to Previous Version")
 def revert_previous_model_version():
     """
     This function focuses on reverting to the previous model in the registry

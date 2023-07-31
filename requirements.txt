@@ -9,8 +9,6 @@ dtale
 pre-commit
 black
 flake8
-mypy
-isort
 pytest
 fastparquet
 glob2
@@ -18,3 +16,5 @@ sklearn
 xgboost
 tensorflow
 evidently
+fastapi
+boto3
