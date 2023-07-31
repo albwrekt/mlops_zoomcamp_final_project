@@ -42,4 +42,6 @@ Create the MLFlow Experiment, if it does not exist.<br>
 From the parent directory, run main.py. This will generate the ML Models, and place the best one into the Model registry for the registered model name. <br>
 Testing the API: Follow the above instructions for the local python script, or run docker build ., rename the model by image id, and deploy the model. The above script should be able to test the build as well. NOTE: make sure to turn deployed flag to True, when testing these. IN ORDER TO RUN THE MODEL UNIT TESTS, a model has to be generated and available in the MLFlow registry for usage.
 
-
+## To Run All Tests
+Make sure the MLFlow server is running at the 5000 Port address on localhost.<br>
+The Live Deployment Test must have the deploy_model.py script running and MLFlow Server up, and the deployed flag turned on.
